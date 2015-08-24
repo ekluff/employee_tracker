@@ -38,14 +38,14 @@ end
 
 patch('/divisions/:id') do
   id = params.fetch('id').to_i
-  name = params.fetch('name')
+  name = params.fetch('new_name')
 
   @division = Division.find(id)
   @division.update({name: name})
 
   # @employees = @division.employees
 
-  redirect_to("/divisions/#{id}")
+  redirect to("/divisions/#{id}")
 
   # erb :division
 end
@@ -58,8 +58,30 @@ delete('/divisions/:id') do
 
   # @divisions = Division.all
 
-  redirect_to('/divisions')
+  redirect to('/divisions')
   # erb(:divisions)
+end
+
+post '/divisions/new/employee' do
+  name = params.fetch('employee_name')
+  division_id = params.fetch('division_id').to_i
+
+  employee = Employee.create({name: name, division_id: division_id})
+
+  @division = Division.find(division_id)
+  @employees = @division.employees
+
+  erb(:division)
+end
+
+delete('/divisions/employees/:id') do
+  id = params.fetch('id').to_i
+
+  employee = Employee.find(id)
+  employee.delete
+
+  redirect to('/divisions')
+
 end
 
 # employee routes
@@ -73,10 +95,11 @@ end
 
 post('/employees/new') do
   name = params.fetch('name')
+  division_id = params.fetch('division_id').to_i
 
-  Employee.create({name: name})
+  Employee.create({name: name, division_id: division_id})
 
-  redirect_to('/employees')
+  redirect to('/employees')
 end
 
 get('/employees/:id') do
@@ -84,20 +107,27 @@ get('/employees/:id') do
 
   @employee = Employee.find(id)
   @divisions = Division.all
+  @division = Division.find(@employee.division_id)
 
   erb :employee
 end
 
 patch('/employees/:id') do
   id = params.fetch('id').to_i
-  name = params.fetch('name')
+  new_name = params.fetch('new_name')
+  new_division_id = params.fetch('new_division_id').to_i
 
   @employee = Employee.find(id)
-  @employee.update({name: name})
+
+  if new_name == ""
+    new_name = @employee.name
+  end
+
+  @employee.update({name: new_name, division_id: new_division_id})
 
   # @employees = @employee.employees
 
-  redirect_to("/employees/#{id}")
+  redirect to("/employees/#{id}")
 
   # erb :employee
 end
@@ -110,6 +140,6 @@ delete('/employees/:id') do
 
   # @employees = Employee.all
 
-  redirect_to('/employees')
+  redirect to('/employees')
   # erb(:employees)
 end

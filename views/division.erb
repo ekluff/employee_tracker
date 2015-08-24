@@ -17,7 +17,7 @@
 
         <td></td>
 
-        <form action="/employees/<%= employee.id %>" method="post">
+        <form action="/divisions/employees/<%= employee.id %>" method="post">
           <td>
             <input type="hidden" name="_method" value="delete">
             <button type="submit" name="delete" class="form-control btn btn-danger btn-sm">delete employee</button>
@@ -30,8 +30,8 @@
       <form class="form-inline" action="/divisions/new/employee" method="post">
 
         <td width="40%">
-          <label hidden for="name">new employee name</label>
-          <input class="form-control" type="text" name="name" id="name" placeholder="new employee name" required>
+          <label hidden for="employee_name">new employee name</label>
+          <input class="form-control" type="text" name="employee_name" placeholder="new employee name" required>
 
           <input type="hidden" name="division_id" value="<%= @division.id %>">
         </td>
@@ -54,8 +54,8 @@
         <input type="hidden" name="_method" value="patch">
 
         <td width="40%">
-          <label hidden for="name">change division name</label>
-          <input class="form-control" type="text" name="name" id="name" placeholder="change division name" required>
+          <label hidden for="new_name">change division name</label>
+          <input class="form-control" type="text" name="new_name" id="new_name" placeholder="change division name" required>
         </td>
 
         <td width="10%">
