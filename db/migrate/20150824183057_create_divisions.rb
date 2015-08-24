@@ -4,5 +4,9 @@ class CreateDivisions < ActiveRecord::Migration
       t.column(:name, :varchar)
       t.timestamps
     end
+    create_table(:employees) do |t|
+      t.column(:name, :varchar)
+      t.timestamps
+    end
   end
 end

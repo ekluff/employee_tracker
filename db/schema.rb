@@ -22,4 +22,10 @@ ActiveRecord::Schema.define(version: 20150824183057) do
     t.datetime "updated_at"
   end
 
+  create_table "employees", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
 end
