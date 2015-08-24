@@ -1,0 +1,45 @@
+<div class="row text-center">
+  <h3>employee detail</h3>
+
+  <table class="table">
+    <tr id="first-row">
+      <th width="40%" class="text-center">name: <%= @employee.name %></th>
+      <th width="40%" class="text-center">division: <%= @division.name %></th>
+      <form class="form-inline" action="/employees/<%= @employee.id %>" method="post">
+        <th width="10%">
+          <input type="hidden" name="_method" value="delete">
+          <button type="submit" name="delete" class="form-control btn btn-danger btn-sm">delete employee</button>
+        </th>
+      </form>
+    </tr>
+
+    <tr>
+      <form class="form-inline" action="/employees/<%= @employee.id %>" method="post">
+        <input type="hidden" name="_method" value="patch">
+
+        <td width="40%">
+          <label hidden for="name">change employee name</label>
+          <input class="form-control" type="text" name="new_name" id="new_name" placeholder="change employee name">
+        </td>
+
+        <td width="40%">
+          <label hidden for="division">change employee division</label>
+          <select class="form-control" name="new_division_id">
+            <option value="<%= @division.id %>">change employee division</option>
+            <% @divisions.each do |division| %>
+              <option value="<%= division.id %>"><%= division.name %></option>
+            <% end %>
+          </select>
+        </td>
+
+        <td width="10%">
+          <button class="btn btn-primary btn-sm form-control" name="submit" type="submit">save</button>
+        </td>
+
+      </form>
+    </tr>
+  </table>
+
+  <a class="btn btn-warning btn-sm" href='/employees'>employees</a>
+  <a class="btn btn-warning btn-sm" href='/divisions'>divisions</a>
+</div>

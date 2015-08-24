@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Employee Tracker</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/master.css">
+  </head>
+  <body>
+    <div class="container">
+      <div class="row text-center">
+  <h3>employees</h3>
+
+  <table class="table">
+    <tr id="first-row">
+      <th width="35%" class="text-center">name</th>
+      <th width="35%" class="text-center">division</th>
+      <th width="20%"></th>
+    </tr>
+
+    <tr>
+      <form class="form-inline" action="/employees/new" method="post">
+
+        <td width="40%">
+          <label hidden for="name">new employee name</label>
+          <input class="form-control" type="text" name="name" id="name" placeholder="new employee name" required>
+        </td>
+
+        <td width="40%">
+          <label hidden for="division">new employee division</label>
+          <select class="form-control" name="division_id" required>
+            <option value="" disabled selected>new employee division</option>
+              <option value="160">Tacocat de Gato</option>
+          </select>
+        </td>
+
+        <td width="10%">
+          <button class="btn btn-primary btn-sm form-control" name="submit" type="submit">+ employee</button>
+        </td>
+
+      </form>
+    </tr>
+  </table>
+  <a class="btn btn-warning btn-sm" href='/'>home</a>
+</div>
+
+    </div>
+  </body>
+</html>
