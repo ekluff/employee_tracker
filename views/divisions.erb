@@ -1,0 +1,56 @@
+<div class="row text-center">
+  <h3>divisions</h3>
+
+
+  <table class="table">
+    <tr id="first-row">
+      <th width="40%" class="text-center">name</th>
+      <!-- <th width="40%" class="text-center">division</th> -->
+      <th width="10%"></th>
+    </tr>
+    <% @divisions.each do |division| %>
+      <tr>
+        <td class="text-center">
+          <a href="/divisions/<%= division.id %>"><%= division.name %></a>
+        </td>
+
+        <form action="/divisions/<%= division.id %>" method="post">
+          <td>
+            <input type="hidden" name="_method" value="delete">
+            <button type="submit" name="delete" class="form-control btn btn-danger btn-sm">delete division</button>
+          </td>
+        </form>
+
+        <!-- <td>
+          <a href="/divisions/< division.division_id %>">< division.division.name %></a>
+        </td> -->
+      </tr>
+    <% end %>
+
+    <tr>
+      <form class="form-inline" action="/divisions/new" method="post">
+
+        <td width="40%">
+          <label hidden for="name">new division name</label>
+          <input class="form-control" type="text" name="name" id="name" placeholder="new division name" required>
+        </td>
+
+        <!-- <td width="40%">
+          <label hidden for="division">new division division</label>
+          <select class="form-control" name="division_id">
+            <option value="" disabled selected>new division division</option>
+            < @divisions.each do |division| %>
+              <option value="< division.id %>">< division.name %></option>
+            < end %>
+          </select>
+        </td> -->
+
+        <td width="10%">
+          <button class="btn btn-primary btn-sm form-control" name="submit" type="submit">+ division</button>
+        </td>
+
+      </form>
+    </tr>
+  </table>
+  <a class="btn btn-warning btn-sm" href='/'>home</a>
+</div>

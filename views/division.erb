@@ -1,0 +1,77 @@
+<div class="row text-center">
+  <h3>division detail</h3>
+  <h4><%= @division.name %></h4>
+
+  <table class="table">
+    <tr id="first-row">
+      <th width="40%" class="text-center">employees</th>
+      <th width="10%"></th>
+      <th width="10%"></th>
+    </tr>
+
+    <% @employees.each do |employee| %>
+      <tr>
+        <td class="text-center">
+          <a href="/employees/<%= employee.id %>"><%= employee.name %></a>
+        </td>
+
+        <td></td>
+
+        <form action="/employees/<%= employee.id %>" method="post">
+          <td>
+            <input type="hidden" name="_method" value="delete">
+            <button type="submit" name="delete" class="form-control btn btn-danger btn-sm">delete employee</button>
+          </td>
+        </form>
+      </tr>
+    <% end %>
+
+    <tr>
+      <form class="form-inline" action="/divisions/new/employee" method="post">
+
+        <td width="40%">
+          <label hidden for="name">new employee name</label>
+          <input class="form-control" type="text" name="name" id="name" placeholder="new employee name" required>
+
+          <input type="hidden" name="division_id" value="<%= @division.id %>">
+        </td>
+
+        <td></td>
+
+        <td width="10%">
+          <button class="btn btn-primary btn-sm form-control" name="submit" type="submit">+ employee</button>
+        </td>
+
+      </form>
+    </tr>
+  </table>
+
+  <table class="table">
+
+    <tr id="first-row"><h4>edit division</h4></tr>
+    <tr>
+      <form class="form-inline" action="/divisions/<%= @division.id %>" method="post">
+        <input type="hidden" name="_method" value="patch">
+
+        <td width="40%">
+          <label hidden for="name">change division name</label>
+          <input class="form-control" type="text" name="name" id="name" placeholder="change division name" required>
+        </td>
+
+        <td width="10%">
+          <button class="btn btn-primary btn-sm form-control" name="submit" type="submit">save</button>
+        </td>
+      </form>
+
+      <td width="10%">
+        <form action="/divisions/<%= @division.id %>" method="post">
+          <input type="hidden" name="_method" value="delete">
+          <button type="submit" name="delete" class="form-control btn btn-danger btn-sm text-center">delete division</button>
+        </form>
+      </td>
+    </tr>
+
+  </table>
+
+  <a class="btn btn-warning btn-sm" href='/divisions'>divisions</a>
+</div>
